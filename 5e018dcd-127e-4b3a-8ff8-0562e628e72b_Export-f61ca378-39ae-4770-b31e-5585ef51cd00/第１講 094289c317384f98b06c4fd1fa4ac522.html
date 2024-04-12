@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>第１講</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="094289c3-1738-4f98-b06c-4fd1fa4ac522" class="page sans"><header><h1 class="page-title">第１講</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/pencil_gray.svg" style="width:14px;height:14px"/></span>作成日時</th><td><time>@2024年4月12日 10:28</time></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/library_gray.svg" style="width:14px;height:14px"/></span>科目番号</th><td><span class="selected-value select-value-color-red">情報数学１A及び演習</span></td></tr></tbody></table></header><div class="page-body"><h1 id="4b0a30d7-7fb0-4fb8-897f-51450a94b70a" class="">集合の概念</h1><figure id="9977269a-b09b-4728-8a3d-4547329881fa" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_104734.png"><img style="width:604px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_104734.png"/></a></figure><hr id="f793c7f1-703b-42f7-a45d-22076bfd8286"/><figure id="0a6ce086-ad67-4aa6-8f6b-cca5ad2d4dee" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_105005.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_105005.png"/></a></figure><p id="143abe22-7275-4d2e-87d1-fd95792ce63c" class="">集合においてa<strong>∈AをA∈aと書かない</strong></p><table id="079cb4b6-1065-4e2b-a66b-3cf2bd39481f" class="simple-table"><tbody><tr id="a100596e-3b80-42ab-9451-fa4d1c4cb72c"><td id="FcKZ" class="" style="width:236px">記号</td><td id="t^&lt;:" class="" style="width:236px">数の集合</td></tr><tr id="0f8f29f2-38f9-4a69-a1c0-1b0f948b5cb3"><td id="FcKZ" class="" style="width:236px">N</td><td id="t^&lt;:" class="" style="width:236px">自然数全体の集合(０は含めない)</td></tr><tr id="7ca934ca-48bb-46ea-a89e-1f8c384f687d"><td id="FcKZ" class="" style="width:236px">Z</td><td id="t^&lt;:" class="" style="width:236px">整数全体の集合(０は含めない)</td></tr><tr id="0d1d9de7-064a-4f75-afb5-fc9b48a2dc42"><td id="FcKZ" class="" style="width:236px">Q</td><td id="t^&lt;:" class="" style="width:236px">有理数全体の集合</td></tr><tr id="43ca6100-aa9a-49ac-b0be-46eb71eff8cd"><td id="FcKZ" class="" style="width:236px">R</td><td id="t^&lt;:" class="" style="width:236px">実数全体の集合</td></tr><tr id="ebe50695-b8f7-4977-b504-6c0f32d5d9d0"><td id="FcKZ" class="" style="width:236px">C</td><td id="t^&lt;:" class="" style="width:236px">複素数全体の集合</td></tr></tbody></table><figure id="68e7c7e6-4b48-49c2-a4ca-e01023f271a2" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_105525.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_105525.png"/></a></figure><p id="95715c0d-d13d-467f-a001-37f166c2665b" class="">集合の括弧は必ず中括弧｛｝</p><p id="894ff4ce-cacd-43bf-94ff-581ff1f95ea8" class="">｛1,2,3,4,…n…｝=N</p><p id="c1a15320-c831-44b0-9a01-784d5c3d96e7" class="">｛a｝は集合aは元(要素)</p><figure id="d837051e-7137-472b-8225-ec4487bfa331" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_110504.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_110504.png"/></a></figure><p id="62db5983-80e6-47f6-851e-27a440c8a7d8" class="">後ろの条件に絶対値などが来るときは「I」より「；」のほうが良い</p><p id="127df5e2-c06a-4720-8e5a-11e4c03538fa" class="">｛xIxは有理数｝=Q</p><p id="900b4065-b007-4718-b05b-fca9ab94dffa" class="">｛yIyは0≦y≦1を満たす実数｝=[0,1]←閉区間</p><figure id="529059f2-dc34-46a1-9079-a347c1921d92" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_111353.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_111353.png"/></a></figure><h3 id="903bf3a1-978b-4fa6-81a1-13ee1869e6ef" class="">R上の集合</h3><p id="1960f9b1-9ae8-427c-aff6-7439eb3bbe29" class="">a,b<strong>∈R</strong></p><ul id="e372d167-b74f-4644-bfc7-4aa1707c1234" class="bulleted-list"><li style="list-style-type:disc">｛xIa＜x＜b｝=(a,b)←開区間</li></ul><ul id="900cf7e9-9c6f-4c94-9230-8cf81bd24d5e" class="bulleted-list"><li style="list-style-type:disc">｛xIa≦x≦b｝=[a,b]←閉区間</li></ul><ul id="cdf9049c-2107-4ff6-a7fb-e1cb90fe78d8" class="bulleted-list"><li style="list-style-type:disc">｛xIa＜x≦b｝=(a,b]←半開区間</li></ul><ul id="c194c204-700b-421d-99eb-e991392f6c3f" class="bulleted-list"><li style="list-style-type:disc">｛xIa≦x＜b｝=[a,b)←半開区間</li></ul><ul id="fb81cb6b-5d62-4eae-baf9-e946b180fb56" class="bulleted-list"><li style="list-style-type:disc">｛xIx＜b｝=(-∞,b)</li></ul><p id="0a166f86-6483-4847-b9c0-a4f0e591ec59" class="">注の意:どんな元も空集合には含まれない</p><figure id="0705daa3-f265-45b6-b872-5662d0ef0dea" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112204.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112204.png"/></a></figure><p id="ff5207ad-40af-4c3d-8d79-27c4d689f354" class="">
+</p><figure id="7baef8ce-f6af-4594-9a53-80523503217c" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112312.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112312.png"/></a></figure><p id="0bcf42be-cbea-4125-a7bb-e23fee602863" class="">
+</p><figure id="89f3e12c-c9bd-4aa8-99f4-11ade8e89779" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112424.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112424.png"/></a></figure><p id="68c72b91-f9bc-49e8-9846-a320fcdc3fe0" class="">真部分集合A<strong>⊋B</strong></p><p id="140cf1a2-da3e-40de-b767-f626684c0e1f" class="">③の証明<br/>任意のxについてx<br/><strong>∈∅は偽である<br/><br/></strong>よって命題x<strong>∈∅⇒x∈Aは真となる<br/>したがって∅⊂Aである<br/></strong></p><p id="7533b1ee-bedb-447c-8b84-4834758fa7c2" class="">
+</p><figure id="7168dfcc-7a3f-4680-a088-ae27e9199a61" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112429.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112429.png"/></a></figure><figure id="81a566e1-2e37-4e5a-99c3-8a75864ac1b9" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_03.jpg"><img style="width:662px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_03.jpg"/></a></figure><p id="02d8f5fb-3083-4c7f-9cc4-dcdce0cdcdfc" class="">結合律ではΣの時同様i=1とnは上下に書いてもよい</p><h3 id="5b734359-023d-4d04-a96c-6b3fc5521cf0" class="">論理演算子とは</h3><figure id="b1dffaf6-1887-4ecf-959f-2baf59c0f88a" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_01.jpg"><img style="width:662px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_01.jpg"/></a></figure><figure id="17cc05bd-d444-492a-bb0b-1e2a258e76d7" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_02.jpg"><img style="width:662px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_02.jpg"/></a></figure><figure id="7159f53d-d259-4971-9465-05d2b4bf74e1" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_05.jpg"><img style="width:662px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_05.jpg"/></a></figure><figure id="4b571ebb-2ea2-4760-83cb-6c692f4ad8f8" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_06.jpg"><img style="width:3013px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/CamScanner_2024-04-12_23.47_06.jpg"/></a></figure><p id="267d92c9-996d-4804-9985-1e422cd3ab9a" class="">命題　特に与えられた(複数の)命題を論理演算子によって<br/>　　　結合したものを<br/><mark class="highlight-orange">複合命題</mark>という</p><p id="126a751a-7d79-46e4-ab3e-dfd3dc4dcf73" class="">述語　　変数を含み、その変数を定めたときに命題となる主張のこと</p><p id="dfb8d54a-671f-47cd-ac96-81f8b2be0413" class="">全称命題　「すべてのxに対して、述語P(x)が真である」という命題を全称命題という。∀xP(x)と書く</p><p id="5b7e6e54-75fa-4422-860c-d7047068d08b" class="">存在命題　「あるxに対して、述語P(x)が真である」という命題を存在命題という。∃xP(x)と書く</p><p id="688a5132-798f-4140-b6ee-0ddd8fe24348" class="">U,vはユニオン(論理和)⋂,^はキャップ(論理積)と読む</p><p id="0e0fbfd1-8f35-4c77-9f0f-a03673d52e95" class="">否定は￢と書く</p><p id="b4434fb1-9170-4b8c-8ee0-725bc5bb68a4" class="">P,Qの真偽が常に一致するとき同値といい、P≡Qと書く</p><p id="a2ee4ff7-fdc3-484f-a78a-799e517022a0" class="">含意　PならばQのようなP⇒Qの⇒を含意という</p><p id="a438d149-b7c1-49b1-bff4-e153e1c672e7" class="">双条件文　P⇒Q,Q⇒Pのような命題P⇚⇒Qと書く</p><p id="3bddc4d2-4320-42ed-aa6e-7bd5695efbb0" class="">逆　含意P⇒Qに対してQ⇒Pを逆という</p><p id="e6416e34-1c9d-4cab-a30d-56ae70a002fc" class="">裏　含意P⇒Qに対して￢P⇒￢Qを裏という</p><p id="448c00c4-f9ff-447a-9580-fdc2918a97f9" class="">対偶　含意P⇒Qに対して￢Q⇒￢Pを対偶という</p><h3 id="e346a32e-64d6-47de-959f-96e2edb1109e" class="">真理値表(真偽値表)</h3><table id="2d6a51d4-8192-41bc-abe4-ec7be736b25c" class="simple-table"><tbody><tr id="be4be023-4103-4df0-9e00-11e465ae30d7"><td id="y;c&lt;" class="">P</td><td id="jBa|" class="">Q</td><td id="U{iV" class="">￢P</td><td id="Ychs" class="">￢￢P</td><td id="znoF" class="">P^Q</td><td id="c`Vi" class="">PvQ</td><td id="TzOJ" class="">P⇒Q</td><td id="xan~" class="">￢Q</td><td id="yXUl" class="">￢Q⇒￢P</td></tr><tr id="1dfed358-48d9-44ca-ad3b-e3ef8df15496"><td id="y;c&lt;" class="">1</td><td id="jBa|" class="">1</td><td id="U{iV" class="">0</td><td id="Ychs" class="">1</td><td id="znoF" class="">1</td><td id="c`Vi" class="">1</td><td id="TzOJ" class="">1</td><td id="xan~" class="">0</td><td id="yXUl" class="">1</td></tr><tr id="2abf0cbb-a4be-4036-bf7f-efe74203d7d5"><td id="y;c&lt;" class="">1</td><td id="jBa|" class="">0</td><td id="U{iV" class="">0</td><td id="Ychs" class="">1</td><td id="znoF" class="">0</td><td id="c`Vi" class="">1</td><td id="TzOJ" class="">0</td><td id="xan~" class="">1</td><td id="yXUl" class="">0</td></tr><tr id="0ed836ee-7d95-46cb-92e3-b2a4c792c84d"><td id="y;c&lt;" class="">0</td><td id="jBa|" class="">1</td><td id="U{iV" class="">1</td><td id="Ychs" class="">0</td><td id="znoF" class="">0</td><td id="c`Vi" class="">1</td><td id="TzOJ" class="">1</td><td id="xan~" class="">0</td><td id="yXUl" class="">1</td></tr><tr id="f9af4560-5fe6-42c9-a070-2f49a60f4c13"><td id="y;c&lt;" class="">0</td><td id="jBa|" class="">0</td><td id="U{iV" class="">1</td><td id="Ychs" class="">0</td><td id="znoF" class="">0</td><td id="c`Vi" class="">1</td><td id="TzOJ" class="">1</td><td id="xan~" class="">1</td><td id="yXUl" class="">1</td></tr></tbody></table><p id="6b570095-10bd-45a1-8b9c-438f71bf619d" class="">
+</p><figure id="3418dc37-9817-4be3-9887-4733093d3dc7" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112435.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112435.png"/></a></figure><p id="ecedbf5b-9822-4d3c-87dd-a3be6f4aa608" class="">
+</p><figure id="eff0b467-957e-4184-9e3c-e354a8f5e11e" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112440.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112440.png"/></a></figure><p id="54e2fe55-3c35-4eb1-9b9f-3f0f6c6e1b3b" class="">
+</p><ul id="02f58007-54a9-4f77-9733-3687ff207c09" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">分配律と吸収律の証明</span><div class="indented"></div></li></ul><ul id="0559461e-3e3b-42c8-b9a9-36f098f857b9" class="toggle"><li><details open=""><summary>分配律について</summary><p id="a0779280-c609-455b-bd9d-2b4fc884893f" class="">分配律には二つの形があります。一つ目はA ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)、二つ目はA ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)です。これらを証明するためには、それぞれの等式の左辺と右辺が同じ集合を表していることを示す必要があります。これは、左辺の任意の元が右辺の集合に含まれ、かつ、右辺の任意の元が左辺の集合に含まれることを示すことにより達成されます。一つ目の法則A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)の証明を考えてみましょう。左辺の元はAに属するか、もしくはBとCの共通部分に属する元です。これは、右辺の集合(A ∪ B)と(A ∪ C)の共通部分、つまりAに属するか、BとCの少なくとも一方に属する元と一致します。よって左辺 = 右辺となります。同様に二つ目の法則A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)の証明も考えてみましょう。左辺の元はAと、BまたはCの少なくとも一方に属する元です。これは、右辺の集合(A ∩ B)または(A ∩ C)に含まれる元、つまりAとBまたはAとCの共通部分と一致します。よって左辺 = 右辺となります。以上より、分配律が証明されました。</p></details></li></ul><ul id="da53c09f-5844-43f4-9f87-d4aad820e266" class="toggle"><li><details open=""><summary>吸収律について</summary><ul id="f505d4e9-8f55-449f-b010-923020eba95f" class="toggle"><li><details open=""><summary>吸収律について</summary><p id="0a6629c8-0e70-4cc6-84f0-f39bf8570e21" class="">吸収律には二つあります。一つ目はA ∪ (A ∩ B) = A、二つ目はA ∩ (A ∪ B) = Aです。これらを証明するためには、それぞれの等式の左辺と右辺が同じ集合を表していることを示す必要があります。これは、左辺の任意の元が右辺の集合に含まれ、かつ、右辺の任意の元が左辺の集合に含まれることを示すことにより達成されます。</p><p id="0220a2c8-3007-4a95-8cc1-36e39ced66a5" class="">一つ目の法則A ∪ (A ∩ B) = Aの証明を考えてみましょう。左辺の元はAに属するか、AとBの共通部分に属する元です。これらはすべて集合Aに含まれることは明らかです。したがって、左辺の任意の元は右辺の集合Aに含まれます。逆に、右辺の任意の元は左辺の集合A ∪ (A ∩ B)に必ず含まれます。したがって、左辺=右辺となります。</p><p id="48e2eb7c-b024-49c8-b95a-283c2a0b3c57" class="">同様に二つ目の法則A ∩ (A ∪ B) = Aの証明も考えてみましょう。左辺の元はAと、AまたはBの少なくとも一方に属する元です。これは、右辺の集合Aの定義と一致します。したがって、左辺の任意の元は右辺の集合Aに含まれます。逆に、右辺の任意の元は左辺の集合A ∩ (A ∪ B)に必ず含まれます。したがって、左辺=右辺となります。</p><p id="80be252e-806a-4a7a-99fc-355d7a41ec88" class="">以上より、吸収律が証明されました。</p></details></li></ul></details></li></ul><figure id="6b6ff326-c48a-40fc-a359-644f5ddbae64" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112446.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112446.png"/></a></figure><p id="3dd9c8dd-48eb-4a58-bd62-03aa9c78a82e" class="">A\BのほかにA-Bとも書く</p><p id="ade7b34e-4531-48f6-acc9-0aad34b21ff4" class="">A^Cは普遍集合の補集合のこと(に対するの補集合と言わなくてよい)</p><figure id="e6f5570f-62dd-41ed-a326-50ed7801ae14" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112455.png"><img style="width:594px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2024-04-12_112455.png"/></a></figure><ul id="0ac130db-8ebc-4f7d-851b-974c0f2a3d5d" class="toggle"><li><details open=""><summary>ドモルガンの法則について</summary><p id="04bc2762-93b9-4746-ae46-3bee85bbe68e" class="">まず、デ・モルガンの法則が二つあります。一つ目は(A ∪ B)^c = A^c ∩ B^c、二つ目は(A ∩ B)^c = A^c ∪ B^cです。これらを証明するためには、それぞれの等式の左辺と右辺が同じ集合を表していることを示す必要があります。これは、左辺の任意の元が右辺の集合に含まれ、かつ、右辺の任意の元が左辺の集合に含まれることを示すことにより達成されます。一つ目の法則(A ∪ B)^c = A^c ∩ B^cの証明を考えてみましょう。左辺の元はAでもBでもない元です。これは、右辺の集合A^cとB^cの共通部分、つまりAでもBでもない元と一致します。よって左辺=右辺となります。同様に二つ目の法則(A ∩ B)^c = A^c ∪ B^cの証明も考えてみましょう。左辺の元はAとBの共通部分ではない元です。これは、右辺の集合A^cまたはB^cのいずれかに含まれる元、つまりAとBの共通部分ではない元と一致します。よって左辺=右辺となります。以上より、デ・モルガンの法則が証明されました。</p></details></li></ul><ul id="09d1b7a3-1a1d-4b2e-b6fa-2568674c575b" class="toggle"><li><details open=""><summary>別解</summary><p id="b32000a2-a790-4560-af6e-55a5e07f61be" class="">(A ∪ B)^c<strong>⊂（</strong>A^c ∪ B^c）かつ<strong>（</strong>A^c ∪ B^c）<strong>⊂</strong>(A ∪ B)^cを満たせばよい<br/>x<br/><strong>∈(</strong>A ∪ B<strong>)</strong>^cとするとx<strong>⊄AUBなのでx⊄Aかつx⊄Bである<br/>つまりx∈A^Cかつx∈B^Cなのでx∈A^C⋂B^Cとなる<br/>よって(AUB)^C⊂（<br/></strong>A^c ∪ B^c）が成り立つ</p></details></li></ul><table id="c50314c1-be70-4b81-9677-bcece60310ba" class="simple-table"><tbody><tr id="b094bef1-eda8-4da6-9396-c6c1004d1281"><td id="hd|v" class="">P</td><td id="=n&lt;h" class="">Q</td><td id="jRni" class="">PvQ</td><td id="nA]~" class="">￢(PvQ)</td><td id="::xc" class="">￢P</td><td id="RDTE" class="">￢Q</td><td id="S{sR" class="">￢P^￢Q</td></tr><tr id="ac6c796a-be04-40aa-97e8-ae7d01cb80d9"><td id="hd|v" class="">1</td><td id="=n&lt;h" class="">1</td><td id="jRni" class="">1</td><td id="nA]~" class="">0</td><td id="::xc" class="">0</td><td id="RDTE" class="">0</td><td id="S{sR" class="">0</td></tr><tr id="fd0b777f-8c52-4798-b0c9-053095d416c8"><td id="hd|v" class="">1</td><td id="=n&lt;h" class="">0</td><td id="jRni" class="">1</td><td id="nA]~" class="">0</td><td id="::xc" class="">0</td><td id="RDTE" class="">1</td><td id="S{sR" class="">0</td></tr><tr id="32731e91-0994-4743-bf71-444d639f226a"><td id="hd|v" class="">0</td><td id="=n&lt;h" class="">1</td><td id="jRni" class="">1</td><td id="nA]~" class="">0</td><td id="::xc" class="">1</td><td id="RDTE" class="">0</td><td id="S{sR" class="">0</td></tr><tr id="eb62a80a-271c-4433-8dcc-5e0aa757f62b"><td id="hd|v" class="">0</td><td id="=n&lt;h" class="">0</td><td id="jRni" class="">0</td><td id="nA]~" class="">1</td><td id="::xc" class="">1</td><td id="RDTE" class="">1</td><td id="S{sR" class="">1</td></tr></tbody></table><h3 id="95b51075-87da-4744-a891-3cfbc8034e41" class="">演習</h3><figure id="93f0f0a5-95ac-4c3f-962d-a1d75fb19944"><div class="source"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/lec1.pdf">lec1.pdf</a></div></figure><figure id="56eec4a5-472b-4d7b-a87f-57d424c680af" class="image"><a href="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/lec1_page-0001.jpg"><img style="width:2481px" src="%E7%AC%AC%EF%BC%91%E8%AC%9B%20094289c317384f98b06c4fd1fa4ac522/lec1_page-0001.jpg"/></a></figure><p id="56765ce1-41fc-4f20-9aad-816d7226a9b6" class="">Uを全体集合、Aをその任意の部分集合とします。</p><p id="13df16d5-836b-4ea7-9566-cfa479302935" class="">全体集合Uの定義から、全ての元xについてx∈Uが成り立つことが明らかです。すなわち、任意の元xについて、xがAに属するならばxはUにも属すると言えます。</p><p id="9bce321a-cbe3-4811-8ce2-6844ed8fa7f1" class="">A⋂Uの定義から、A⋂UはAとUの共通部分、つまりAにもUにも属する全ての元からなる集合です。前述の議論から、Aに属する全ての元はUにも属すると言えるので、A⋂UはAの全ての元を含むことがわかります。つまり、A⋂U⊇Aが成り立ちます。</p><p id="6d34c230-3705-4277-8db7-55f07e2fc666" class="">逆に、A⋂Uの任意の元xは、定義から明らかにAに属します。従って、A⋂U⊆Aも成り立ちます。</p><p id="28f0c2c2-76df-4cd2-9007-7083aa712d98" class="">以上から、A⋂U⊆AかつA⋂U⊇Aが成り立つので、A⋂U=Aが証明されました。</p><p id="70df0030-3e02-426d-866b-cd5f00b54e97" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
